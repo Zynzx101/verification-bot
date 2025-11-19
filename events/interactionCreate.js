@@ -54,10 +54,10 @@ export default {
 					if (isValidStudent(student_id,full_name) == true)
 					{
 						await member.roles.add(verifiedRole);
-						interaction.reply({content: "Club Membership Verified! Thank You.", Ephemeral: true})
+						interaction.reply({content: "Your club membership has been verified! Thank you.", ephemeral: true})
 					}
 					else {
-						interaction.reply({content: "Incorrect Input. Try again.", Ephemeral: true})
+						interaction.reply({content: "The name or student ID you entered is incorrect. Please try again. \nNote: New members must wait one full week after joining before they can verify.", ephemeral: true})
 					}
 				}
 			} catch (error) {

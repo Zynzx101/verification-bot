@@ -1,8 +1,9 @@
+//file should be rename with file extension .js, this is no longer  common javascript
 import { createClient } from '@supabase/supabase-js'
 
 import config from '../config/config.json' with { type: 'json' };
 
-
+ 
 const supabase = createClient(config.supabaseUrl, config.supabaseKey);
 
 

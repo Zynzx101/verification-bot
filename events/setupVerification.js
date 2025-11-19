@@ -1,6 +1,8 @@
 import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, Events } from 'discord.js';
 
 const verificationChannel = '1429277241749012566'
+const executive_role = '1437633864402210888'
+const admin_role = '1440674212066099200'
 
 console.log("verification file found")
 
@@ -11,7 +13,10 @@ export default {
     async execute(message) {
         console.log("verification started")
         console.log(message.content)
-        if (message.content === '.setup' && message.channelId === verificationChannel) {
+        const member = message.member; 
+        const isAdmin = member.roles.cache.has(admin_role);
+        const isExecutive = member.roles.cache.has(executive_role);
+        if (message.content === '.setup' && message.channelId === verificationChannel && (isAdmin || isExecutive) ) {
             console.log("verification something")
             await message.channel.send({
                 embeds: [
