@@ -58,7 +58,7 @@ for (const file of modalFiles) {
 	const filePath = path.join(modalFoldersPath, file);
 	const fileUrl = pathToFileURL(filePath);
 	const modal = await import(fileUrl.href);
-	if ('customId' in modal && 'execute' in modal) {
+	if ('customId' in modal) {
 		client.modals.set(modal.customId, modal);
 	} else {
 		console.warn(`[WARNING] Modal at ${filePath} missing "customId" or "execute".`);

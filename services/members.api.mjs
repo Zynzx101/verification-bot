@@ -3,8 +3,6 @@ import { createClient } from '@supabase/supabase-js'
 import config from '../config/config.json' with { type: 'json' };
 
 
-//Status Incomplete - Needs to be used inconjuction with verificationModal 
-
 const supabase = createClient(config.supabaseUrl, config.supabaseKey);
 
 
@@ -16,24 +14,26 @@ if (readError) {
   console.error('Error reading master_db:', readError)
 }
 
-const member_student_id = []
-master_db_data.forEach(student => {
-  const id = student.student_id
-
-  member_student_id.push(id)
-  console.log(id);
-});
-
-console.log(member_student_id.length);
- 
-const member_full_name = []
-master_db_data.forEach(student => {
-  const name = student.full_name
-    .toLowerCase();
-
-  member_full_name.push(name)
-  console.log(name);
-});
 
 
-console.log(member_full_name.length); 
+const studentLookup = new Map();
+
+for (const student of master_db_data) {
+  const key =
+    student.full_name.toLowerCase() + "|" + student.student_id;
+
+  studentLookup.set(key, student);
+}
+
+export function isValidStudent(student_id, full_name) {
+  const full_name_normalized = full_name.toLowerCase();
+  const student_id_cleaned = student_id.replace(/\D/g, '');
+
+  const key = full_name_normalized + "|" + student_id_cleaned;
+
+  return studentLookup.has(key);
+}
+
+
+
+

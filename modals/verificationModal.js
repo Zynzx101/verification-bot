@@ -3,32 +3,24 @@ import { ModalBuilder, TextInputBuilder, ActionRowBuilder, TextInputStyle } from
 
 export function buildVerificationModal() {
 
-    //Place holder modal to test button logic and functionaity. 
+	//TODO: modal uses deprecated setLabel and addComponets. Needs to be updated later.
 
-    const modal = new ModalBuilder().setCustomId('myModal').setTitle('My Modal');
+    const modal = new ModalBuilder().setCustomId('verificationModal').setTitle('Verification Forum');
 
-		// Add components to modal
-
-		// Create the text input components
-		const favoriteColorInput = new TextInputBuilder()
-			.setCustomId('favoriteColorInput')
-			// The label is the prompt the user sees for this input
-			.setLabel("What's your favorite color?")
-			// Short means only a single line of text
+	
+		const studentFullName = new TextInputBuilder()
+			.setCustomId('studentFullName')
+			.setLabel("Full name (as on record)")
 			.setStyle(TextInputStyle.Short);
 
-		const hobbiesInput = new TextInputBuilder()
-			.setCustomId('hobbiesInput')
-			.setLabel("What's some of your favorite hobbies?")
-			// Paragraph means multiple lines of text.
-			.setStyle(TextInputStyle.Paragraph);
+		const studentId = new TextInputBuilder()
+			.setCustomId('studentId')
+			.setLabel("Student ID (without the s)")
+			.setStyle(TextInputStyle.Short);
 
-		// An action row only holds one text input,
-		// so you need one action row per text input.
-		const firstActionRow = new ActionRowBuilder().addComponents(favoriteColorInput);
-		const secondActionRow = new ActionRowBuilder().addComponents(hobbiesInput);
+		const firstActionRow = new ActionRowBuilder().addComponents(studentFullName);
+		const secondActionRow = new ActionRowBuilder().addComponents(studentId);
 
-		// Add inputs to the modal
 		modal.addComponents(firstActionRow, secondActionRow);
     return modal;
 }

@@ -1,11 +1,13 @@
 import { Events, MessageFlags } from 'discord.js';
+import { isValidStudent } from '../services/members.api.mjs';
+import config from '../config/config.json' with { type: 'json' };
 
 export default {
 	name: Events.InteractionCreate,
 	async execute(interaction) {
 		console.log("event file loaded")
 
-		//command  handler
+		
 		if (interaction.isChatInputCommand()) {
 			const command = interaction.client.commands.get(interaction.commandName);
 
@@ -30,56 +32,44 @@ export default {
 					});
 				}
 			}
-			//stops processing further when it's a command
 			return;
 		}
 
-		//modal submission handler
+
 		if (interaction.isModalSubmit()) {
-			const modal = interaction.client.modals.get(interaction.customId);
-			if (!modal) {
+			const modalCustomId = interaction.customId;
+			if (!modalCustomId) {
 				console.error(`No modal matching ${interaction.customId} was found.`);
 				return;
 			}
 
 			try {
-				await modal.execute(interaction);
-			} catch (error) {
-				console.error(error);
-				if (interaction.replied || interaction.deferred) {
-					await interaction.followUp({
-						content: 'There was an error while handling your submission!',
-						flags: MessageFlags.Ephemeral
-					});
-				} else {
-					await interaction.reply({
-						content: 'There was an error while handling your submission!',
-						flags: MessageFlags.Ephemeral
-					});
+				//room to be more modular. 
+				// -perhaps set the following logic as seperate event?
+				if( modalCustomId == 'verificationModal'){
+					const member = interaction.member
+					const verifiedRole = config.roleId
+					const student_id = interaction.fields.getTextInputValue('studentId')
+					const full_name = interaction.fields.getTextInputValue('studentFullName')
+					if (isValidStudent(student_id,full_name) == true)
+					{
+						await member.roles.add(verifiedRole);
+						interaction.reply({content: "Club Membership Verified! Thank You.", Ephemeral: true})
+					}
+					else {
+						interaction.reply({content: "Incorrect Input. Try again.", Ephemeral: true})
+					}
 				}
-			}
-			return;
-		}
-
-		if (interaction.isButton()) {
-			const buttonHandler = interaction.client.buttons.get(interaction.customId);
-			if (!buttonHandler) {
-				console.error(`No modal matching ${interaction.customId} was found.`);
-				return;
-			}
-
-			try {
-				await buttonHandler.execute(interaction);
 			} catch (error) {
 				console.error(error);
 				if (interaction.replied || interaction.deferred) {
 					await interaction.followUp({
-						content: 'There was an error while handling your button!',
+						content: 'There was an error while handling your submission!',
 						flags: MessageFlags.Ephemeral
 					});
 				} else {
 					await interaction.reply({
-						content: 'There was an error while handling your button!',
+						content: 'There was an error while handling your submission!',
 						flags: MessageFlags.Ephemeral
 					});
 				}
