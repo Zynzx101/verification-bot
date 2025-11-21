@@ -10,7 +10,62 @@ This Discord Verification Bot is an open-source project designed to automaticall
 
 ## Setup
 
--- To Be Done
+### Setup Discord Bot Profile on Discord Developers
+
+Note: To contribute, you need to create your own Discord Bot profile and test it yourself in another server.
+
+1. Open [Discord Developers](https://discord.com/developers) and click on "Get Started"
+2. Create a New Application, with any name you like
+3. Navigate to `Bot` on the left sidebar
+   - Note down the `Token`, the code of your bot will require it.
+   - Enable the Intent `Message Content`
+     - This is required by Discord to ensure popular discord bots do not scrape server message contents without permission.
+4. Generate a Discord Bot URL:
+   1. Navigate to `OAuth2` on the left sidebar
+   2. Scroll down to `OAuth2 URL Generator`
+   3. Under Scopes, select `bot`
+   4. Scroll down to `Bot Permissions`
+   5. Select permissions, or later override it in the invite link.
+     - DSEC Bot's Permission integer is `17603728861184`.
+   6. Copy the Generated URL, and invite your bot to your Discord server.
+
+    OR 
+    1. `https://discord.com/oauth2/authorize?client_id=DISCORD_BOT_ID&permissions=17603728861184&integration_type=0&scope=bot`
+
+### Setup Discord Bot on your machine
+
+Javascript with Nodejs
+1. Navigate to directory on your machine
+2. `git clone https://github.com/deakinSoftwareEngineeingClub/verification-bot`
+3. Create `.env` file according to `.env.example`
+  - You can ask the committee (or Milad) for the environment variables on Discord.
+4. Run ``` npm install ```
+5. Run ```node deploy-commands.js```
+6. Run ```node index.js```
+
+Or Use Docker
+1. Make sure Docker engine is running.
+   - On Windows, open Docker Desktop.
+2. Run the commands
+```
+docker-compose build
+docker compose up -d
+docker compose logs -f bot
+```
+
+## Rules
+
+### General Rules
+- Follow DSEC Server Rules
+- Follow Deakin Code of Conduct
+- Follow Discord Terms of Services
+
+### Programming Rules
+- Do not test in Production
+- Do not write malicious code (unless you have obtained permission for white hat hacking)
+- Do not spam pull requests
+- Do not add your own code formatter, affecting the whole files you edit
+
 
 ---
 
@@ -23,3 +78,7 @@ This Discord Verification Bot is an open-source project designed to automaticall
 		```
 			npm install discord.js
 		```
+		
+## Credits
+
+* Helped with development advice and repository structure : [RythonDev] (https://github.com/liyunze-coding)
