@@ -10,11 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@supabase/supabase-js": "^2.81.1",
+    "@supabase/supabase-js": "^2.83.0",
     "discord.js": "^14.24.2",
     "dotenv": "^17.2.3",
     "file-url": "^4.0.0",
-    "postgres": "^3.4.7"
+    "postgres": "^3.4.7",
+    "undici": "^7.16.0"
   },
   "type": "module"
 }

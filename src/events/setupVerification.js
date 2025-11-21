@@ -21,9 +21,9 @@ export default {
             await message.channel.send({
                 embeds: [
                     new EmbedBuilder()
-                        .setTitle('Verify your student membership')
+                        .setTitle('Verify your DSEC membership')
                         .setDescription('Click **Verify Here** and enter your **Full name** and **Student ID** (e.g., `s123456789`). Your responses are private.')
-                        .setColor(parseInt('57F287', 16))
+                        .setColor(parseInt(process.env.roleColorHex, 16))
                 ],
                 components: [
                     new ActionRowBuilder()

@@ -1,0 +1,26 @@
+
+
+services:
+  bot:
+    build: .
+    container_name: verification-bot
+    restart: unless-stopped
+
+    # Inject environment variables from .env into the container
+    env_file:
+      - .env
+
+    # Extra explicit env if you want (overrides env_file)
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+
+    # Security / resource knobs (optional but recommended)
+    read_only: true          # root FS read-only (if your bot doesn’t write to disk)
+    tmpfs:
+      - /tmp                 # ephemeral temp dir
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: "512M"
+

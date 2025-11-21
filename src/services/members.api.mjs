@@ -1,10 +1,10 @@
 //file should be rename with file extension .js, this is no longer  common javascript
 import { createClient } from '@supabase/supabase-js'
 
-import config from '../config/config.json' with { type: 'json' };
+
 
  
-const supabase = createClient(config.supabaseUrl, config.supabaseKey);
+const supabase = createClient(process.env.supabaseUrl, process.env.supabaseKey);
 
 
 const { data: master_db_data, error: readError } = await supabase
@@ -38,3 +38,5 @@ export function isValidStudent(student_id, full_name) {
 
 
 
+console.log('supabaseUrl', process.env.supabaseUrl);
+console.log('supabaseKey set?', !!process.env.supabaseKey);

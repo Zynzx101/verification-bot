@@ -1,6 +1,6 @@
 import { Events, MessageFlags } from 'discord.js';
 import { isValidStudent } from '../services/members.api.mjs';
-import config from '../config/config.json' with { type: 'json' };
+
 
 export default {
 	name: Events.InteractionCreate,
@@ -48,7 +48,7 @@ export default {
 				// -perhaps set the following logic as seperate event?
 				if( modalCustomId == 'verificationModal'){
 					const member = interaction.member
-					const verifiedRole = config.roleId
+					const verifiedRole = process.env.roleId
 					const student_id = interaction.fields.getTextInputValue('studentId')
 					const full_name = interaction.fields.getTextInputValue('studentFullName')
 					if (isValidStudent(student_id,full_name) == true)

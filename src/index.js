@@ -1,7 +1,5 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import url from 'url';
-import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { pathToFileURL  } from 'node:url';
 
@@ -16,7 +14,7 @@ import {
   GatewayIntentBits,
 } from 'discord.js';
 
-import config  from './config/config.json'  with { type: 'json' };
+
 
 const client = new Client({ intents: [
 	GatewayIntentBits.Guilds,	
@@ -87,4 +85,4 @@ for (const file of eventFiles) {
 
 
 
-client.login(config.token); 
+client.login(process.env.token); 
