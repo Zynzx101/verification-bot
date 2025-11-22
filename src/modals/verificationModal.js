@@ -15,7 +15,7 @@ export function buildVerificationModal() {
 
 		const studentId = new TextInputBuilder()
 			.setCustomId('studentId')
-			.setLabel("Student ID (without the s)")
+			.setLabel("Student ID")
 			.setStyle(TextInputStyle.Short);
 
 		const firstActionRow = new ActionRowBuilder().addComponents(studentFullName);

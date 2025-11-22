@@ -17,7 +17,6 @@ export default {
         const isAdmin = member.roles.cache.has(admin_role);
         const isExecutive = member.roles.cache.has(executive_role);
         if (message.content === '.setup' && message.channelId === verificationChannel && (isAdmin || isExecutive) ) {
-            console.log("verification something")
             await message.channel.send({
                 embeds: [
                     new EmbedBuilder()

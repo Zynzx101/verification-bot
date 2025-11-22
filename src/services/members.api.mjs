@@ -34,9 +34,3 @@ export function isValidStudent(student_id, full_name) {
 
   return studentLookup.has(key);
 }
-
-
-
-
-console.log('supabaseUrl', process.env.supabaseUrl);
-console.log('supabaseKey set?', !!process.env.supabaseKey);
