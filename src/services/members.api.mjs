@@ -8,7 +8,7 @@ const supabase = createClient(process.env.supabaseUrl, process.env.supabaseKey);
 
 
 const { data: master_db_data, error: readError } = await supabase
-  .from('master_db')
+  .from('active_members')
   .select('student_id, full_name')
 
 if (readError) {

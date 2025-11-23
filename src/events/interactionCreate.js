@@ -49,7 +49,7 @@ export default {
 				if( modalCustomId == 'verificationModal'){
 					const member = interaction.member
 					const verifiedRole = process.env.roleId
-					const isVerified = member.roles.cache.has(admin_role);
+					const isVerified = member.roles.cache.has(verifiedRole);
 					const student_id = interaction.fields.getTextInputValue('studentId')
 					const full_name = interaction.fields.getTextInputValue('studentFullName')
 					if (isVerified)
